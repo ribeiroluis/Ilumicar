@@ -1,0 +1,42 @@
+<html ng-app="ilumicar">
+
+<head>
+	<title>Ilumicar</title>
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/angular.js"></script>
+	<script src="js/angular-resource.js"></script>
+	<script src="js/angular-route.js"></script>
+	<script src="js/angular-locale_pt-br.js"></script>
+	<script src="js/toastr.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script src="js/datepicker-pt-BR.js"></script>
+	<script src="js/md5.js"></script>
+	<script src="js/highcharts.js"></script>
+	<script src="js/lodash.min.js"></script>
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/app.css">
+	<link rel="stylesheet" href="css/toastr.min.css">
+	<link rel="stylesheet" href="css/jquery-ui.min.css">
+	<link rel="stylesheet" href="css/jquery-ui.structure.min.css">
+	<link rel="stylesheet" href="css/theme.css">
+	<link rel="stylesheet" href="css/animate.css">
+
+	<script src="app.js"></script>
+	<script src="controllers/indexController.js"></script>
+	<!--<script src="router/routes.js"></script>
+		<script src="controller/loginController.js"></script>
+		<script src="controller/homeController.js"></script>
+		<script src="controller/reportController.js"></script>		
+		<script src="js/connectionControl.js"></script>-->
+</head>
+
+<body ng-controller="indexController">
+	<div data-ng-include src="headerSrc"></div>
+	<div data-ng-view=""></div>
+	<!--<div data-ng-include src="footerSrc"></div>-->
+</body>
+
+</html>
