@@ -9,6 +9,12 @@ window.app.controller("indexController", function ($scope, $http) {
 	$scope.loadingTmp = "tmpl/loading.html";
 	$scope.appTitle = "Ilumicar";
 	$scope.isAuth = false;
+	
+	$scope.product = new Product();
+	$scope.product.set({name: "acendedor"});
+	console.log($scope.product.get());
+	
+	
 
 	$scope.selectMenuItem = function (value) {
 		$(value.currentTarget).siblings('.active').toggleClass('active');
