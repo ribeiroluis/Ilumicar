@@ -4,6 +4,7 @@ window.app.controller("indexController", function ($scope, $http) {
 	"use strict",
 
 	$scope.headerSrc = "tmpl/header.html";
+	$scope.sideBarSrc = "tmpl/sideBar.html";
 	$scope.footerSrc = "tmpl/footer.html";
 	$scope.loadingTmp = "tmpl/loading.html";
 	$scope.appTitle = "Ilumicar";
