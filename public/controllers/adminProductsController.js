@@ -28,13 +28,11 @@
     var viewProductsBySupplier = function (supplierId) {        
         debugger;
         var data = [];
-        
         var _data = $scope.Product.productsList.filter(function(value){
             if(value.supplierId == supplierId){
                 return value;
             }            
         });
-        
         _data.forEach(function (e) {
             var _data = [];
             _data.push(e.id);
@@ -53,7 +51,6 @@
             ]
         });
     }
-
 
     var selectSupplier = $("#supplierList");
     var inputOrderNumber = $("#orderNumber");
