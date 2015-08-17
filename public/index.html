@@ -5,6 +5,7 @@
 	<script src="js/jquery-1.11.2.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/angular.js"></script>
+	<script src="js/angular.js"></script>
 	<script src="js/angular-resource.js"></script>
 	<script src="js/angular-route.js"></script>
 	<script src="js/angular-locale_pt-br.js"></script>
@@ -14,7 +15,12 @@
 	<script src="js/md5.js"></script>
 	<script src="js/highcharts.js"></script>
 	<script src="js/lodash.min.js"></script>
-
+	<script src="js/jquery.dataTables.min.js"></script>
+	<script src="js/dataTables.bootstrap.min.js"></script>
+	
+	
+    
+	
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/bootstrap-theme.min.css">	
 	<link rel="stylesheet" href="css/toastr.min.css">
@@ -24,10 +30,21 @@
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/app.css">
 	<link rel="stylesheet" href="css/sidebar.css">
-
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+	<!--<link rel="stylesheet" href="css/jquery.dataTables.min.css"/>	-->
+	<link rel="stylesheet" href="css/dataTables.bootstrap.min.css"/>
+	
+	
 	<script src="app.js"></script>
-	<script src="controllers/product.js"></script>
-	<script src="controllers/indexController.js"></script>
+	<script src="controllers/controllers.js"></script>
+	<script src="controllers/mainController.js"></script>
+    <script src="controllers/salesController.js"></script>
+    <script src="controllers/productsController.js"></script>
+    <script src="controllers/adminProductsController.js"></script>
+    <script src="controllers/adminUsersController.js"></script>
+	<script src="controllers/adminSuppliersController.js"></script>
+	
+
 	<!--<script src="router/routes.js"></script>
 		<script src="controller/loginController.js"></script>
 		<script src="controller/homeController.js"></script>
@@ -35,7 +52,7 @@
 		<script src="js/connectionControl.js"></script>-->
 </head>
 
-<body ng-controller="indexController">
+<body ng-controller="mainController">
 	<!--<div data-ng-include src="headerSrc"></div>-->
 	<div data-ng-include src="sideBarSrc"></div>
 	<div data-ng-view="" class="viewContainer"></div>

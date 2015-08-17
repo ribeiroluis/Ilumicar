@@ -11,7 +11,7 @@ app.use(bodyParser.json()); 									// parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 
 
-require('./node_modules/routes.js')(app);
+require('./api/routes.js')(app);
 app.listen(port);
-console.log("App listening on port " + port);
+console.log("App listening on http://localhost:" + port);
 open("http://localhost:3000/");
