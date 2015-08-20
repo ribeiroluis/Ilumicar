@@ -25,8 +25,7 @@
         btnCancelSupplier.attr('disabled', 'disabled');
     }
 
-    var viewProductsBySupplier = function (supplierId) {        
-        debugger;
+    var viewProductsBySupplier = function (supplierId) {
         var data = [];
         var _data = $scope.Product.productsList.filter(function(value){
             if(value.supplierId == supplierId){
@@ -50,6 +49,8 @@
                 { title: "QtdInStock" }
             ]
         });
+        //tableProducts.parent().parent().parent().css('float', 'left');
+        debugger;
     }
 
     var selectSupplier = $("#supplierList");

@@ -33,7 +33,9 @@ module.exports = function(app) {
 					
 			}
 		}
-		console.log("request productList")
+		console.log("request productList");
+		console.log(productList);	
+		
 		res.json(productList);		
 	});
 	
