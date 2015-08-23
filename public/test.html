@@ -1,0 +1,68 @@
+<!doctype html>
+<html ng-app="app">
+
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-touch.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
+  <script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+  <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
+  <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+  <script src="http://ui-grid.info/release/ui-grid.js"></script>
+  <link rel="stylesheet" href="http://ui-grid.info/release/ui-grid.css" type="text/css">
+  <link rel="stylesheet" href="css/ui-grid.css"/>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">	
+	<link rel="stylesheet" href="css/toastr.min.css">
+	<link rel="stylesheet" href="css/jquery-ui.min.css">
+	<link rel="stylesheet" href="css/jquery-ui.structure.min.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css"/>
+</head>
+
+<body>
+  <style>
+    .grid {
+      width: 50% ;
+      height: 400px;
+    }
+  </style>
+
+  <div ng-controller="MainCtrl">
+    <!--<div id="productsList" ui-grid="gridOptions" class="grid"></div>-->
+    <div id="grid1" ui-grid="{ data: $scope.gridOptions }" class="grid"></div>
+  </div>
+
+  <script>
+    var app = angular.module('app', ['ngTouch', 'ui.grid']);
+
+app.controller('MainCtrl', ['$scope', function ($scope) {
+  $scope.gridOptions = {
+        columnDefs: [
+            { field: 'id', displayName: 'Id' },
+            { field: 'name', displayName: 'Descrição' },
+            { field: 'supplierId', displayName: 'Fornecedor' },
+            { field: 'QtdInStock', displayName: 'Estoque' },
+            { field: 'order', displayName: 'Nº da nota' }
+        ]
+    };
+  $scope.gridOptions.data = function(){
+      var data = [];
+      for(var i = 0; i< 100; i++){
+        data.push({
+          id: i,
+          name: "name_" + i,
+          supplierId: i*2,
+          QtdInStock: i*10,
+          order:i + 100,
+          }); 
+      }
+      return data;
+    
+  };
+}]);
+
+  </script>
+</body>
+
+</html>

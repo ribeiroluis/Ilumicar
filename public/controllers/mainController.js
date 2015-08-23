@@ -8,36 +8,31 @@ window.app.controller("mainController", function ($scope, $http) {
 	$scope.sideBarSrc = "tmpl/sideBar.html";
 	$scope.simpleSideBarSrc = "tmpl/simple-sideBar.html";
 	$scope.loadingTmp = "tmpl/loading.html";
+
 	
-	$scope.Supplier = new Supplier();
-	$scope.Product = new Product();	
+	$scope.Product = new Product();
+
 	
-	
-	$scope.getSuppliersList = function(){
-		$http.get('api/getSuppliersList')
-		.success(function (data) {
-			$scope.Supplier.suppliersList = data;
-			$scope.getProductsList();
-		})
-		.error(function (data) {
-			console.log('Error: ' + data);
-		});		
-	}();
-	
-	$scope.getProductsList = function(){
+	$scope.getProductsList = function (callback) {
 		$http.get('api/getProductsList')
-		.success(function (data) {
-			$scope.Product.productsList = data;
-		})
-		.error(function (data) {
-			console.log('Error: ' + data);
-		});		
-	}	
-
-
-
-	
-	
+			.success(function (data) {
+				$scope.Product.productsList = data;
+				$scope.gridOptions = {
+					columnDefs: [
+						{ field: 'id', displayName: 'Id' },
+						{ field: 'cod', displayName: 'Código' },
+						{ field: 'name', displayName: 'Descrição' },
+						{ field: 'QtdInStock', displayName: 'Estoque' },
+						{ field: 'priceBuy', displayName: 'Preço de compra' },
+						{ field: 'priceSale', displayName: 'Preço de venda' }
+					],
+					data: data
+				};
+			})
+			.error(function (data) {
+				console.log('Error: ' + data);
+			});
+	}
 
 	// $scope.selectMenuItem = function (value) {
 	// 	$(value.currentTarget).siblings('.active').toggleClass('active');

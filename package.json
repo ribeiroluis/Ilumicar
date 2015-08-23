@@ -6,8 +6,11 @@
   "dependencies": {
     "express": "^4.13.3",
     "mongoose": "~3.6.2",
+    "mongodb": "~2.0",
+    "mongojs": "*",
     "morgan": "~1.2.2",
     "body-parser": "~1.5.2",
+    "static-favicon": "~1.0.0",
     "open": "*"
   },
   "scripts": {

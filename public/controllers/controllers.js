@@ -1,10 +1,11 @@
 var Product = function () {
   this.product = {
-    id: undefined,
-    name: undefined,
-    supplierId: undefined,
+    _id: undefined,
+    cod: undefined,
+    name: undefined,    
     QtdInStock: undefined,
-    order: undefined
+    priceBuy: undefined,
+    priceSale: undefined,    
   };
   this.productsList = [];
 
@@ -20,10 +21,14 @@ var Product = function () {
   }
 };
 
+
+
+
+
 //Supplier
-var Supplier = function () {
+var Supplier = function (scope, http) {
   this.supplier = {
-    id: undefined,
+    _id: undefined,
     name: undefined,
     cnpj: undefined,
     cpf: undefined,
@@ -34,7 +39,42 @@ var Supplier = function () {
   this.getSupplier = function (supplier) {
     return this.supplier;
   }
-  this.getSupplierList = function () {
+  this.getSupplierList = function (callback) {
+    http.get('api/getSuppliersList')
+			.success(function (data) {
+				scope.Supplier.suppliersList = data;				
+				if (callback) {
+					callback();
+				}
+			})
+			.error(function (data) {
+				console.log('Error: ' + data);
+			});
+  }
+  this.updateSupplier = function(value, callback){
+    http.post('api/updateSupplier', value)
+			.success(function (data) {
+				console.info(data);
+        if (callback) {
+					callback();
+				}				
+			})
+			.error(function (data) {
+				console.error(data);
+			});
+    
+  }
+  this.addSupplier = function(value, callback){
+    http.post('api/addSupplier', value)
+			.success(function (data) {
+				console.info(data);
+        if (callback) {
+					callback();
+				}				
+			})
+			.error(function (data) {
+				console.error(data);
+			});
   }
 };
 
@@ -44,5 +84,10 @@ var Employee = function () {
 };
 
 var Order = function () {
-
+  this.order = {
+    orderNumber: undefined,
+    date: undefined,
+    value: undefined,
+    products: Product().productList
+  }
 }
