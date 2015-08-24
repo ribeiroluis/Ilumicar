@@ -21,7 +21,7 @@
     }
 
     $scope.saveSupplier = function () {
-        if ($scope.supplier.id == undefined) {
+        if ($scope.supplier._id == undefined) {
             $scope.Supplier.addSupplier($scope.supplier, getData);
         } else {
             $scope.Supplier.updateSupplier($scope.supplier, getData);

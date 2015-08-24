@@ -32,7 +32,7 @@ var Supplier = function (scope, http) {
     name: undefined,
     cnpj: undefined,
     cpf: undefined,
-    tel: undefined
+    phone: undefined
   }
   this.suppliersList = [];
 

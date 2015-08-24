@@ -14,10 +14,8 @@ app.use(bodyParser.urlencoded({ 'extended': 'true' })); 		// parse application/x
 app.use(bodyParser.json()); 									// parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 
+require('./api/routes.js')(app);
 
-
-var mongo = require('./api/mongo.js');
-require('./api/routes.js')(app, mongo);
 app.listen(port);
 console.log("App listening on http://localhost:" + port);
 open("http://localhost:3000/");

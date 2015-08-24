@@ -1,4 +1,6 @@
 ﻿var mongod = require('mongodb').MongoClient;
+var ObjectId = require('mongodb').ObjectID;
+
 var assert = require('assert');
 var url = 'mongodb://localhost:27017/Ilumicar';
 var db = undefined;
@@ -9,12 +11,10 @@ var connect = function (callback) {
 		callback(db);
 	});
 }
-
 module.exports = {
 	inserItem: function (object, collection, callback) {
 		connect(function (db) {
-			var collection = db.collection(collection);
-			collection.insert(object, function (err, result) {
+			db.collection(collection).insert(object, function (err, result) {
 				if (result != null) {
 					callback();
 				} else {
@@ -23,31 +23,30 @@ module.exports = {
 			});
 		});
 	},
-	updateItem: function (object, collection, callback) {
+	updateSupplier: function (object, collection, callback) {
 		connect(function (db) {
-			var collection = db.collection(collection);
-			collection.update({ "_id": "ObjectId(" + object._id + ")" }, 			
-				{
-					$set: { object }
-				},    
-				// options 
-				{
-					"multi": false,  // update only one document 
-					"upsert": false  // insert a new document, if no existing document match the query 
-				}
-				);
-
+			db.collection(collection).update(
+				{"_id": new ObjectId(object._id)},				
+				{ $set: {
+					"name": object.name,
+					"cnpj": object.cnpj,
+					"cpf": object.cpf,
+					"phone": object.phone
+					} },
+				function (err, results) {
+					console.log(results);
+					callback();
+				});
 		});
 	},
-	getSuppliers: function (callback) {
+	getItensFromCollection: function (collection, callback) {
 		connect(function (db) {
-			var collection = db.collection('suppliers');
-			collection.find({}).toArray(function (err, docs) {
+			db.collection(collection).find({}).toArray(function (err, docs) {
 				assert.equal(err, null);
 				if (docs != null) {
 					db.close();
 					callback(docs);
-				}else{
+				} else {
 					throw err;
 				}
 			});
