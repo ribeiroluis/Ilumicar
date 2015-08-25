@@ -10,7 +10,7 @@ module.exports = function (app) {
 		var param = req.body;
 		try {
 			mongo.inserItem(param, "suppliers", function () {
-				res.send(200);
+				res.sendStatus(200);
 			});
 		} catch (error) {
 			res.status(500).send(error);
@@ -20,7 +20,7 @@ module.exports = function (app) {
 		var param = req.body;
 		try {
 			mongo.updateSupplier(param, "suppliers", function () {
-				res.send(200);
+				res.sendStatus(200);
 			});
 		} catch (error) {
 			res.status(500).send(error);

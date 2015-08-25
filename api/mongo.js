@@ -16,8 +16,10 @@ module.exports = {
 		connect(function (db) {
 			db.collection(collection).insert(object, function (err, result) {
 				if (result != null) {
+					console.info(result);
 					callback();
 				} else {
+					console.error(err);
 					throw err;
 				}
 			});
@@ -34,7 +36,7 @@ module.exports = {
 					"phone": object.phone
 					} },
 				function (err, results) {
-					console.log(results);
+					console.info(results);
 					callback();
 				});
 		});
