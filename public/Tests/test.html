@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ilumicar Test</title>
+    <!--<link rel="shortcut icon" type="image/png" href="jasmine/jasmine_favicon.png">-->
+    <script src="../libs/js/jquery-1.11.2.min.js"></script>
+    <script src="../libs/js/bootstrap.min.js"></script>
+    <script src="../libs/js/angular.min.js"></script>
+    <script src="../libs/js/angular-resource.js"></script>
+    <script src="../libs/js/angular-route.js"></script>
+    <script src="../libs/js/angular-locale_pt-br.js"></script>
+    <script src="../libs/js/toastr.min.js"></script>
+    <script src="../libs/js/jquery-ui.js"></script>
+    <script src="../libs/js/md5.js"></script>
+    <script src="../libs/js/lodash.min.js"></script>
+    <script src="../libs/js/jquery.dataTables.min.js"></script>
+    <script src="../libs/js/dataTables.bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../libs/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../libs/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../libs/css/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet" href="../libs/css/toastr.min.css">
+    <link rel="stylesheet" href="../libs/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="../libs/css/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="../libs/css/animate.css">
+    <link rel="stylesheet" href="../libs/css/font-awesome.min.css" />
+</head>
+
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <div class="container">
+            <h3>{{title}}</h3>
+            <form class="form-horizontal" role="form">
+                <label># Insertions:
+                    <input type="number" ng-model="test.numTest" value="10" ng-value="10">
+                </label>
+                <button type="submit" class="btn btn btn-info" ng-click="insert($event)">Iniciar</button>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+                    style="width:{{progress}}%">
+                        {{progress | number: 2}}% Complete
+                    </div>
+                </div>
+                <label>Time: {{time}}</label>
+                <div>
+                    <label>Logs:</label>                    
+                    <p>{{log}}</p>                                        
+                </div>
+                
+            </form>
+        </div>
+    </div>
+    <script>
+        var app = angular.module('myApp', []);        
+        app.controller('myCtrl', function($scope, $http) {            
+            $scope.title = "SupplierTest";
+            $scope.data = [];
+            $scope.progress = undefined;
+            $scope.totalData = undefined;            
+            var button;
+            $scope.insert = function($event){
+                $scope.startTime = new Date();
+                button = $($event.target);
+                button.attr('disabled', 'disabled');
+                $scope.data = [];
+                $scope.progress = 0;
+                for(var i = 0; i < $scope.test.numTest; i++){
+                    $scope.supplier = {};
+                    $scope.supplier.name = "Fornecedor__" + i;
+                    $scope.supplier.cnpj = i + "0" + i + "0" +i + "0" +i + "0";
+                    $scope.supplier.phone = i + "1" + i + "1" +i + "1" +i + "1";
+                    $scope.data.push($scope.supplier);
+                }
+                $scope.totalData = $scope.data.length;
+                saveData($scope.data.pop(), saveData);
+            }            
+            function saveData(data, callback){
+                $http.post('../api/addSupplier', data)
+                    .success(function (data) {
+                        $scope.log = data;
+                        $scope.progress = (1 - ($scope.data.length / $scope.totalData)) * 100;
+                        calculeTime();                        
+                        if($scope.data.length > 0){
+                            callback($scope.data.pop(),saveData);                                                        
+                        }else{
+                            button.removeAttr('disabled', 'disabled');
+                            clearInterval(interval);
+                        }
+                    })
+			         .error(function (data) {
+				        console.error(data);
+                        $scope.log = "Error: " + data;
+        			}); 
+             };
+             function calculeTime(){
+                 var difference = new Date() - $scope.startTime;
+                 var minutes = Math.floor(difference/60000);
+                 var secondsMilliseconds = (Math.floor(difference%60000)/1000).toString().split('.');
+                 $scope.time = ("00" + minutes).slice(-2) + ":" +
+                 ("00" + secondsMilliseconds[0]).slice(-2) +
+                 "." + ("000" + secondsMilliseconds[1]).slice(-3); 
+             }
+        });
+    </script>
+</body>
+
+</html>

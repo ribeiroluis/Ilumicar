@@ -16,7 +16,7 @@ module.exports = {
 		connect(function (db) {
 			db.collection(collection).insert(object, function (err, result) {
 				if (result != null) {
-					console.info(result);
+					console.info("addItem")					
 					callback();
 				} else {
 					console.error(err);
@@ -36,7 +36,7 @@ module.exports = {
 					"phone": object.phone
 					} },
 				function (err, results) {
-					console.info(results);
+					console.info("updateItem: " + results);
 					callback();
 				});
 		});
@@ -46,6 +46,7 @@ module.exports = {
 			db.collection(collection).find({}).toArray(function (err, docs) {
 				assert.equal(err, null);
 				if (docs != null) {
+					console.info("getItensItem: " + docs.length);
 					db.close();
 					callback(docs);
 				} else {

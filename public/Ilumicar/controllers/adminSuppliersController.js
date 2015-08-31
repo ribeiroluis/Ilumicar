@@ -1,12 +1,13 @@
 ﻿window.app.controller("adminSuppliersController", function ($scope, $http) {
     "use strict",
     $scope.title = "Gerenciar Fornecedores";
-
+    Supplier.http = $http;
+    
     var updateTable = function () {
         supplierTable.destroy();
         $('#tableSupplier').empty();
         supplierTable = $('#tableSupplier').DataTable({
-            data: $scope.Supplier.suppliersList,
+            data: Supplier.suppliersList,
             columns: [
                 { data: 'cnpj', title: "CNPJ" },
                 { data: 'name', title: "Nome" },
@@ -19,17 +20,17 @@
 
         });
     }
-
+    $scope.clearSupplier = function(){
+        $scope.supplier = undefined;        
+    }
     $scope.saveSupplier = function () {
         if ($scope.supplier._id == undefined) {
-            $scope.Supplier.addSupplier($scope.supplier, getData);
+            Supplier.addSupplier($scope.supplier, getData);
         } else {
-            $scope.Supplier.updateSupplier($scope.supplier, getData);
+            Supplier.updateSupplier($scope.supplier, getData);
         }
         $scope.supplier = undefined;
     }
-
-    $scope.Supplier = new Supplier($scope, $http);
     var supplierTable = $('#tableSupplier').DataTable({
         data: [],
         columns: [
@@ -39,7 +40,20 @@
         ]
     });
     function getData (){
-        $scope.Supplier.getSupplierList(updateTable);
+        Supplier.getSupplierList(updateTable);
     }
     getData();
+    
+    
+    //InsertTest
+    // var count = 993;
+    // 
+    // setInterval(function(){
+    //     $scope.supplier = {};
+    //     $scope.supplier.name = "Fornecedor__" + count;
+    //     $scope.supplier.cnpj = count + "0" + count + "0" +count + "0" +count + "0";
+    //     $scope.supplier.phone = count + "1" + count + "1" +count + "0" +count + "1";
+    //     $scope.saveSupplier();
+    //     count++;
+    // },5000);
 });
