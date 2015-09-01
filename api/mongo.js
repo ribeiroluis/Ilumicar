@@ -6,22 +6,17 @@ var url = 'mongodb://localhost:27017/Ilumicar';
 var db = undefined;
 var connect = function (callback) {
 	mongod.connect(url, function (err, db) {
-		assert.equal(null, err);
-		console.log("Connected correctly to server");
-		callback(db);
+		assert.equal(null, err);		
+		callback(db);		
 	});
 }
 module.exports = {
 	inserItem: function (object, collection, callback) {
 		connect(function (db) {
 			db.collection(collection).insert(object, function (err, result) {
-				if (result != null) {
-					console.info("addItem")					
-					callback();
-				} else {
-					console.error(err);
-					throw err;
-				}
+				assert.equal(null, err);
+				db.close();	
+				callback();
 			});
 		});
 	},
@@ -36,8 +31,9 @@ module.exports = {
 					"phone": object.phone
 					} },
 				function (err, results) {
-					console.info("updateItem: " + results);
-					callback();
+					assert.equal(null, err);
+					db.close();					
+					callback();					
 				});
 		});
 	},
@@ -45,12 +41,11 @@ module.exports = {
 		connect(function (db) {
 			db.collection(collection).find({}).toArray(function (err, docs) {
 				assert.equal(err, null);
-				if (docs != null) {
-					console.info("getItensItem: " + docs.length);
+				if (docs != null) {					
 					db.close();
 					callback(docs);
 				} else {
-					throw err;
+					console.error(err)					
 				}
 			});
 		});

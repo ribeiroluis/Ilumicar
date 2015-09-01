@@ -1,4 +1,4 @@
-
+var _http = undefined;
 
 var Product = function () {
   this.product = {
@@ -24,12 +24,8 @@ var Product = function () {
 };
 
 
-
-
-
 //Supplier
 var Supplier = {
-  http: undefined,
   supplier: {
     _id: undefined,
     name: undefined,
@@ -42,34 +38,32 @@ var Supplier = {
     return this.supplier;
   },
   getSupplierList: function (callback) {
-    $.ajax({
-      url: "../api/getSuppliersList",
-      dataType: "json",
-      success: function (data) {
-        Supplier.suppliersList = data;
-        if (callback) {
-          callback();
-        }
-      },
-      error: function (data) {
-        console.log('Error: ' + data);
-      }
-    });
-
-
-    Supplier.http.get('../api/getSuppliersList')
+    _http.get('../api/getSuppliersList')
       .success(function (data) {
         Supplier.suppliersList = data;
         if (callback) {
-          callback();
+          callback(data);
         }
       })
       .error(function (data) {
-        console.log('Error: ' + data);
+        console.error(data);
       });
+    // $.ajax({
+    //   url: "../api/getSuppliersList",
+    //   dataType: "json",
+    //   success: function (data) {
+    //     Supplier.suppliersList = data;
+    //     if (callback) {
+    //       callback(data);
+    //     }
+    //   },
+    //   error: function (data) {
+    //     console.error('Error: ' + data);
+    //   }
+    // });
   },
   updateSupplier: function (value, callback) {
-    Supplier.http.post('../api/updateSupplier', value)
+    _http.post('../api/updateSupplier', value)
       .success(function (data) {
         console.info(data);
         if (callback) {
@@ -81,7 +75,7 @@ var Supplier = {
       });
   },
   addSupplier: function (value, callback) {
-    Supplier.http.post('../api/addSupplier', value)
+    _http.post('../api/addSupplier', value)
       .success(function (data) {
         console.info(data);
         if (callback) {

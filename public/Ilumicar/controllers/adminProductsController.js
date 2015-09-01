@@ -2,53 +2,50 @@
     "use strict",
     $scope.title = "Cadastrar produtos";
     $scope.showProducts = false;
-    $("#insertLoading").show(200);
+    $scope._supplierList = [];
     
-    
-    var interval = setInterval(function(){
-        if($scope.Product.productsList){
-            clearInterval(interval);
-            $("#insertLoading").hide(200);            
-        }
-        
-        
-    },50);         
-    
-
-
-
-
-    $scope.setSupplier = function () {
-        if ($scope.data == undefined || $scope.data.supplier == undefined || $scope.data.orderNumber == undefined) {
-            selectSupplier.focus();
-            return;
-        }
-        
-        $scope.showProducts = true;
-        inputOrderNumber.attr('disabled', 'disabled');
-        selectSupplier.attr('disabled', 'disabled');
-        btnConfirmSupplier.attr('disabled', 'disabled');
-        btnCancelSupplier.removeAttr('disabled');
-        
-        $scope.gridOptions.data = $scope.Product.productsList
-        tableProducts.DataTable();
-        console.log($scope.data);
+    function getSupplierList (){
+        Supplier.getSupplierList(function(){
+            $scope._supplierList = Supplier.suppliersList;
+            //$scope.$apply();
+        });        
     }
-    $scope.cancelSupplier = function () {
-        $scope.showProducts = false;
-        inputOrderNumber.removeAttr('disabled', '');
-        selectSupplier.removeAttr('disabled', '');
-        btnConfirmSupplier.removeAttr('disabled');
-        btnCancelSupplier.attr('disabled', 'disabled');
-    }
+    getSupplierList();
     
-    $scope.setProduct = function($event, value){
-        // $($event.currentTarget.parentNode.children).removeClass('active');
-        // $($event.currentTarget).toggleClass('active');
-        $scope.Product.product = value;
-        console.log($event);
-        console.log(value);
-    }  
+    
+
+
+    // $scope.setSupplier = function () {
+    //     if ($scope.data == undefined || $scope.data.supplier == undefined || $scope.data.orderNumber == undefined) {
+    //         selectSupplier.focus();
+    //         return;
+    //     }
+    //     
+    //     $scope.showProducts = true;
+    //     inputOrderNumber.attr('disabled', 'disabled');
+    //     selectSupplier.attr('disabled', 'disabled');
+    //     btnConfirmSupplier.attr('disabled', 'disabled');
+    //     btnCancelSupplier.removeAttr('disabled');
+    //     
+    //     $scope.gridOptions.data = $scope.Product.productsList
+    //     tableProducts.DataTable();
+    //     console.log($scope.data);
+    // }
+    // $scope.cancelSupplier = function () {
+    //     $scope.showProducts = false;
+    //     inputOrderNumber.removeAttr('disabled', '');
+    //     selectSupplier.removeAttr('disabled', '');
+    //     btnConfirmSupplier.removeAttr('disabled');
+    //     btnCancelSupplier.attr('disabled', 'disabled');
+    // }
+    // 
+    // $scope.setProduct = function($event, value){
+    //     // $($event.currentTarget.parentNode.children).removeClass('active');
+    //     // $($event.currentTarget).toggleClass('active');
+    //     $scope.Product.product = value;
+    //     console.log($event);
+    //     console.log(value);
+    // }  
 
     
 

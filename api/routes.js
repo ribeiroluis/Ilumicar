@@ -28,8 +28,7 @@ module.exports = function (app) {
 	});
 	app.get('/api/getSuppliersList', function (req, res) {
 		try {
-			mongo.getItensFromCollection("suppliers", function (docs) {
-				console.log("request supplierList, lenght: " + docs.length);
+			mongo.getItensFromCollection("suppliers", function (docs) {				
 				res.json(docs);
 			});
 		} catch (error) {

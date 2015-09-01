@@ -1,5 +1,5 @@
-/// <reference path="../js/jquery-1.11.2.min.js" />
-/// <reference path="../controllers/controllers.js" />
+/// <reference path="../../../typings/jquery/jquery.d.ts" />
+/// <reference path="controllers.js" />
 
 window.app.controller("mainController", function ($scope, $http) {
 	"use strict",
@@ -8,31 +8,8 @@ window.app.controller("mainController", function ($scope, $http) {
 	$scope.sideBarSrc = "tmpl/sideBar.html";
 	$scope.simpleSideBarSrc = "tmpl/simple-sideBar.html";
 	$scope.loadingTmp = "tmpl/loading.html";
-
-	
-	$scope.Product = new Product();
-
-	
-	$scope.getProductsList = function (callback) {
-		$http.get('api/getProductsList')
-			.success(function (data) {
-				$scope.Product.productsList = data;
-				$scope.gridOptions = {
-					columnDefs: [
-						{ field: 'id', displayName: 'Id' },
-						{ field: 'cod', displayName: 'Código' },
-						{ field: 'name', displayName: 'Descrição' },
-						{ field: 'QtdInStock', displayName: 'Estoque' },
-						{ field: 'priceBuy', displayName: 'Preço de compra' },
-						{ field: 'priceSale', displayName: 'Preço de venda' }
-					],
-					data: data
-				};
-			})
-			.error(function (data) {
-				console.log('Error: ' + data);
-			});
-	}
+	_http = $http;
+	});
 
 	// $scope.selectMenuItem = function (value) {
 	// 	$(value.currentTarget).siblings('.active').toggleClass('active');
@@ -76,4 +53,3 @@ window.app.controller("mainController", function ($scope, $http) {
 	// 		if ($scope.isAuth)
 	// 			return true;
 	// 	}
-});

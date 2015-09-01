@@ -1,8 +1,6 @@
 ﻿window.app.controller("adminSuppliersController", function ($scope, $http) {
     "use strict",
-    $scope.title = "Gerenciar Fornecedores";
-    Supplier.http = $http;
-    
+    $scope.title = "Gerenciar Fornecedores";          
     var updateTable = function () {
         supplierTable.destroy();
         $('#tableSupplier').empty();
