@@ -26,13 +26,11 @@ var Product = function () {
 
 //Supplier
 var Supplier = {
-  supplier: {
-    _id: undefined,
-    name: undefined,
-    cnpj: undefined,
-    cpf: undefined,
-    phone: undefined
-  },
+  _id: undefined,
+  name: undefined,
+  cnpj: undefined,
+  cpf: undefined,
+  phone: undefined,
   suppliersList: [],
   getSupplier: function (supplier) {
     return this.supplier;

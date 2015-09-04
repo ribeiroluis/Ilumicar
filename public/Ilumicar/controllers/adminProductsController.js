@@ -4,6 +4,14 @@
     $scope.showProducts = false;
     $scope._supplierList = [];
     
+    $scope.setSupplier = function(){
+        Supplier.
+    }
+    
+    
+    
+    
+    
     function getSupplierList (){
         Supplier.getSupplierList(function(){
             $scope._supplierList = Supplier.suppliersList;
@@ -45,13 +53,6 @@
     //     $scope.Product.product = value;
     //     console.log($event);
     //     console.log(value);
-    // }  
-
-    
-
-    var selectSupplier = $("#supplierList");
-    var inputOrderNumber = $("#orderNumber");
-    var btnCancelSupplier = $("#btnCancelSupplier");
-    var btnConfirmSupplier = $("#btnConfirmSupplier");
-    var tableProducts = $("#productsList");    
+    // }
+        
 });
