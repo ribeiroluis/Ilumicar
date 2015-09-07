@@ -1,39 +1,44 @@
 var _http = undefined;
 
-var Product = function () {
-  this.product = {
+var Product = {
+  _object: {
     _id: undefined,
     cod: undefined,
     name: undefined,
     QtdInStock: undefined,
     priceBuy: undefined,
-    priceSale: undefined,
-  };
-  this.productsList = [];
-
-  this.setProduct = function (product) {
-    this.product = product;
-  };
-
-  this.getProduct = function (product) {
+    priceSale: undefined
+  },
+  productsList: [],
+  setProduct: function (product) {
+    Product._id = product.id;
+    Product.cod = product.cod,
+    Product.name = product.name,
+    Product.QtdInStock = product.QtdInStock,
+    Product.priceBuy = product.priceBuy,
+    Product.priceSale = product.priceSale
+  },
+  getProductList: function (product) {
     return this.product;
-  };
-  this.getListProducts = function (data) {
-    return this.productList;
   }
 };
 
 
 //Supplier
 var Supplier = {
-  _id: undefined,
-  name: undefined,
-  cnpj: undefined,
-  cpf: undefined,
-  phone: undefined,
+  _object: {
+    _id: undefined,
+    name: undefined,
+    cnpj: undefined,
+    cpf: undefined,
+    phone: undefined
+  },
   suppliersList: [],
-  getSupplier: function (supplier) {
-    return this.supplier;
+  setSupplier: function(object){
+    Supplier._object = object;        
+  },  
+  getSupplier: function (id) {
+    return Supplier._object;
   },
   getSupplierList: function (callback) {
     _http.get('../api/getSuppliersList')
@@ -46,19 +51,6 @@ var Supplier = {
       .error(function (data) {
         console.error(data);
       });
-    // $.ajax({
-    //   url: "../api/getSuppliersList",
-    //   dataType: "json",
-    //   success: function (data) {
-    //     Supplier.suppliersList = data;
-    //     if (callback) {
-    //       callback(data);
-    //     }
-    //   },
-    //   error: function (data) {
-    //     console.error('Error: ' + data);
-    //   }
-    // });
   },
   updateSupplier: function (value, callback) {
     _http.post('../api/updateSupplier', value)
@@ -87,14 +79,21 @@ var Supplier = {
 };
 
 
-var Employee = function () {
+var Employee = {
 };
 
-var Order = function () {
-  this.order = {
+var Order = {
+  _object: {
     orderNumber: undefined,
     date: undefined,
     value: undefined,
-    products: Product().productList
-  }
+    supplierOrder: undefined,
+    productsInOrder : []
+  },
+  setOrder: function(object){
+    Order._object = object;        
+  },
+  
 }
+
+

@@ -8,6 +8,7 @@ window.app.controller("mainController", function ($scope, $http) {
 	$scope.sideBarSrc = "tmpl/sideBar.html";
 	$scope.simpleSideBarSrc = "tmpl/simple-sideBar.html";
 	$scope.loadingTmp = "tmpl/loading.html";
+	$scope.modalTmp = "tmpl/modal.html";
 	_http = $http;
 	});
 
