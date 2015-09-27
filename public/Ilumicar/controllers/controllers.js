@@ -5,7 +5,7 @@ var Product = {
     _id: undefined,
     cod: undefined,
     name: undefined,
-    QtdInStock: undefined,
+    qtdInStock: undefined,
     priceBuy: undefined,
     priceSale: undefined
   },
@@ -14,12 +14,33 @@ var Product = {
     Product._id = product.id;
     Product.cod = product.cod,
     Product.name = product.name,
-    Product.QtdInStock = product.QtdInStock,
+    Product.qtdInStock = product.QtdInStock,
     Product.priceBuy = product.priceBuy,
     Product.priceSale = product.priceSale
   },
-  getProductList: function (product) {
-    return this.product;
+  getProductList: function (callback) {
+    _http.get('../api/getProductsList')
+      .success(function (data) {
+        Product.productsList = data;
+        if (callback) {
+          callback(data);
+        }
+      })
+      .error(function (data) {
+        console.error(data);
+      });
+  },
+  addProduct: function (value, callback) {
+    _http.post('../api/addProduct', value)
+      .success(function (data) {
+        console.info(data);
+        if (callback) {
+          callback(data);
+        }
+      })
+      .error(function (data) {
+        console.error(data);
+      });
   }
 };
 
@@ -57,7 +78,7 @@ var Supplier = {
       .success(function (data) {
         console.info(data);
         if (callback) {
-          callback();
+          callback(data);
         }
       })
       .error(function (data) {
@@ -69,7 +90,7 @@ var Supplier = {
       .success(function (data) {
         console.info(data);
         if (callback) {
-          callback();
+          callback(data);
         }
       })
       .error(function (data) {

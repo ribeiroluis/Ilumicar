@@ -1,91 +1,134 @@
 ﻿window.app.controller("adminProductsController", function ($scope, $http) {
-    "use strict",   
-    
+    "use strict",
+
     $scope.title = "Cadastrar produtos";
     $scope.showProducts = false;
     $scope._supplierList = [];
     $scope.modalTitle = "Produtos Cadastrados";
-    
+
     var _order;
 
     $scope.setSupplier = function () {
+        if (!$scope._supplier) {
+            supplierListSelect.focus();
+            $scope.cancelSupplier();
+            return;
+        }
         $scope._order.date = new Date();
         $scope._order._supplier = $scope._supplier;
         _order = $scope._order;
         _order._productsList = [];
         $scope.showProducts = true;
         btnConfirmSupplier.attr('disabled', 'disabled');
-        supplierList.attr('disabled', 'disabled');
-        orderNumber.attr('disabled', 'disabled');
-        btnCancelSupplier.removeAttr('disabled');        
+        supplierListSelect.attr('disabled', 'disabled');
+        inputOrderNumber.attr('disabled', 'disabled');
+        btnCancelSupplier.removeAttr('disabled');
     }
-    $scope.cancelSupplier = function () {        
-        _order = undefined;        
+    $scope.cancelSupplier = function () {
+        _order = undefined;
         $scope.showProducts = false;
         btnCancelSupplier.attr('disabled', 'disabled');
         btnConfirmSupplier.removeAttr('disabled');
-        orderNumber.removeAttr('disabled');
-        supplierList.removeAttr('disabled');
+        inputOrderNumber.removeAttr('disabled');
+        supplierListSelect.removeAttr('disabled');
     }
-    $scope.addProduct = function(object){
-        _order._productsList.push(object);        
+    $scope.searchProductByCode = function ($event) {
+        if ($event.keyCode !== 13)
+            return;
+
+        var _product = _.find(Product.productsList, { cod: eval($scope._product.cod) });
+        if (_product) {
+            $scope._product = _product;
+        }
+    }
+
+
+
+
+    $scope.addProduct = function () {
+        _order._productsList.push($scope._product);
         console.debug(object);
     }
-    
-        
+
+
     function getSupplierList() {
         Supplier.getSupplierList(function () {
             $scope._supplierList = Supplier.suppliersList;
             setTimeout(function () {
-                supplierList.val(0);
-                updateTable();
+                supplierListSelect.val(0);
             }, 0);
         });
-    }   
-    function updateTable() {
-        productsTable.destroy();
-        $('#tableProducts').empty();
-        productsTable = $('#tableProducts').DataTable({
-            data: Supplier.suppliersList,
+    }
+    function getProductList() {
+        Product.getProductList(function (data) {
+            updateModalProductsTable();
+            var names = [];
+            for (i in data) {
+                names.push(data[i].name);
+            }
+            productNameInput.autocomplete({
+                source: names,
+                select: function (event, ui) {
+                    debugger;
+                    var _product = _.find(Product.productsList, { name: ui.item.value });
+                    if (_product) {
+                        $scope._product = _product;
+                        $scope.$apply();
+                    }
+                }
+            });
+        });
+
+
+    }
+    function updateModalProductsTable() {
+        modalProductsTable.destroy();
+        $('#genericTable').empty();
+        modalProductsTable = $('#genericTable').DataTable({
+            data: Product.productsList,
             columns: [
-                { data: 'cnpj', title: "CNPJ" },
+                { data: 'cod', title: "Código" },
                 { data: 'name', title: "Nome" },
-                { data: 'phone', title: "Telefone" }
+                { data: 'qtdInStock', title: "Estoque" },
+                { data: 'priceBuy', title: "Preço compra" },
+                { data: 'priceSale', title: "Preço venda" }
             ]
         });
-        $('#tableProducts tbody').on('click', 'tr', function () {
-            console.info(productsTable.row(this).data());  
+        $('#genericTable tbody').on('click', 'tr', function () {
+            console.info(modalProductsTable.row(this).data());
             $('#myModal').modal('hide');          
             //$scope.supplier = supplierTable.row(this).data();
             //$scope.$apply();
         });
     }
-    
-    var productsTable = $('#tableProducts').DataTable({
-        data: [],
-        columns: [
-            { data: 'cnpj', title: "CNPJ" },
-            { data: 'name', title: "Nome" },
-            { data: 'phone', title: "Telefone" }
-        ]
-    });    
-    
+
+
+
+
+
+
+
+
+
+
     var btnConfirmSupplier = $("#btnConfirmSupplier");
     var btnCancelSupplier = $("#btnCancelSupplier");
-    var supplierList = $("#supplierList");
-    var orderNumber = $("#orderNumber");
+    var supplierListSelect = $("#supplierListSelect");
+    var inputOrderNumber = $("#orderNumberInput");
     var productNameInput = $("#productNameInput");
-    var data = [];
-    for (var index = 0; index < 50; index++) {
-        var s = ("Nome_" + index);
-        data.push({label: s, value: s, id: index});
-    }
-    productNameInput.autocomplete({
-      source: data,
-      select: function( event, ui ) {
-          debugger;
-      }
-    });    
-    getSupplierList();    
-    
+    var btnCancelProduct = $("#btnCancelProduct");
+    var btnAddProduct = $("#btnAddProduct");
+    var modalProductsTable = $('#genericTable').DataTable({
+        data: [],
+        columns: [
+            { data: 'cod', title: "Código" },
+            { data: 'name', title: "Nome" },
+            { data: 'qtdInStock', title: "Estoque" },
+            { data: 'priceBuy', title: "Preço compra" },
+            { data: 'priceSale', title: "Preço venda" }
+        ]
+    });
+    getSupplierList();
+    getProductList();
+
 });

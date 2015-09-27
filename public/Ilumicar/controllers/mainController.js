@@ -10,7 +10,12 @@ window.app.controller("mainController", function ($scope, $http) {
 	$scope.loadingTmp = "tmpl/loading.html";
 	$scope.modalTmp = "tmpl/modal.html";
 	_http = $http;
-	});
+	setTimeout(function () {
+		_loadingTmp = $('.loading-container');
+	}, 50);
+
+});
+  
 
 	// $scope.selectMenuItem = function (value) {
 	// 	$(value.currentTarget).siblings('.active').toggleClass('active');

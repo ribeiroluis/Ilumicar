@@ -38,6 +38,7 @@
         ]
     });
     function getData (){
+        
         Supplier.getSupplierList(updateTable);
     }
     getData();

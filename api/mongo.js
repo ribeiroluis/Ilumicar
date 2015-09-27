@@ -2,7 +2,7 @@
 var ObjectId = require('mongodb').ObjectID;
 
 var assert = require('assert');
-var url = 'mongodb://localhost:27017/Ilumicar';
+var url = 'mongodb://127.0.0.1:27017/Ilumicar';
 var db = undefined;
 var connect = function (callback) {
 	mongod.connect(url, function (err, db) {

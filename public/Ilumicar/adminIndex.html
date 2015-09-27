@@ -11,43 +11,57 @@
 	<script src="../libs/js/jquery.min.js"></script>
 	<script src="../libs/js/jquery-ui.min.js"></script>
 	<script src="../libs/js/bootstrap.min.js"></script>
-	<script src="../libs/js/angular.min.js"></script>	
+	<script src="../libs/js/angular.min.js"></script>
 	<script src="../libs/js/angular-resource.js"></script>
 	<script src="../libs/js/angular-route.js"></script>
-	<script src="../libs/js/angular-locale_pt-br.js"></script>	
-	<script src="../libs/js/toastr.min.js"></script>		
+	<script src="../libs/js/angular-locale_pt-br.js"></script>
+	<script src="../libs/js/toastr.min.js"></script>
 	<script src="../libs/js/md5.js"></script>
-	<script src="../libs/js/lodash.min.js"></script>		
+	<script src="../libs/js/lodash.min.js"></script>
 	<script src="../libs/js/jquery.dataTables.min.js"></script>
 	<script src="../libs/js/dataTables.bootstrap.min.js"></script>
-	
+
 	<!--<link rel="stylesheet" href="css/ui-grid.css"/>-->
-	<!--<link rel="stylesheet" href="css/theme.css">-->	
-	<!--<link rel="stylesheet" href="css/simple-sidebar.css">-->	
+	<!--<link rel="stylesheet" href="css/theme.css">-->
+	<!--<link rel="stylesheet" href="css/simple-sidebar.css">-->
 	<link rel="stylesheet" href="../libs/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../libs/css/bootstrap-theme.min.css">
-	<link rel="stylesheet" href="../libs/css/dataTables.bootstrap.min.css"/>	
-	<link rel="stylesheet" href="../libs/css/toastr.min.css">	
+	<link rel="stylesheet" href="../libs/css/dataTables.bootstrap.min.css" />
+	<link rel="stylesheet" href="../libs/css/toastr.min.css">
 	<link rel="stylesheet" href="../libs/css/animate.css">
-	<link rel="stylesheet" href="../libs/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="../libs/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="../libs/css/jquery-ui.min.css">
-	<link rel="stylesheet" href="../libs/css/jquery-ui.theme.min.css">	
-	<link rel="stylesheet" href="../libs/css/jquery-ui.structure.min.css">	
-	
+	<link rel="stylesheet" href="../libs/css/jquery-ui.theme.min.css">
+	<link rel="stylesheet" href="../libs/css/jquery-ui.structure.min.css">
+
 	<link rel="stylesheet" href="../libs/css/app.css">
 	<script src="app.js"></script>
 	<script src="controllers/controllers.js"></script>
 	<script src="controllers/mainController.js"></script>
-    <script src="controllers/salesController.js"></script>
-    <script src="controllers/productsController.js"></script>
-    <script src="controllers/adminProductsController.js"></script>
-    <script src="controllers/adminUsersController.js"></script>
+	<script src="controllers/salesController.js"></script>
+	<script src="controllers/productsController.js"></script>
+	<script src="controllers/adminProductsController.js"></script>
+	<script src="controllers/adminUsersController.js"></script>
 	<script src="controllers/adminSuppliersController.js"></script>
 </head>
+<!--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">-->
 
 <body ng-controller="mainController">
+	<div data-ng-include src="loadingTmp" class="loading-container">		
+	</div>
+	<!--<div class="alert alert-danger alert-dismissible fade in" role="alert" id="messageDialog" style="position: absolute;
+    top: 20%;
+    width: 100%;
+    z-index: 1">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">×</span>
+		</button>
+		<p></p>
+	</div>-->
+
 	<div data-ng-include src="sideBarSrc"></div>
 	<div data-ng-view="" class="viewContainer"></div>
+	
 </body>
 
 </html>

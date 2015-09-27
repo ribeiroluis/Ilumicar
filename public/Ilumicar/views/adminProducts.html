@@ -1,33 +1,33 @@
 ﻿<div data-ng-include src="modalTmp"></div>
 <div class="container">    
   <h3>{{title}}</h3>
-  <form class="form-inline" role="form">
+  <form class="form-inline" role="form" ng-submit="setSupplier()">
     <fieldset class="row">
       <div class="form-group col-md-6">
         <label for="supplierList">Fornecedor: </label>
-        <select class="form-control" name="supplierList" id="supplierList" ng-options="option.name for option in _supplierList track by option.id"
+        <select class="form-control" name="supplierList" id="supplierListSelect" ng-options="option.name for option in _supplierList track by option.id"
         ng-model="_supplier" required></select>
       </div>
       <div class="form-group col-md-3">
         <label for="orderNumber">Nº Nota: </label>
-        <input type="text" class="form-control" id="orderNumber" ng-model="_order.orderNumber" required>
+        <input type="text" class="form-control" id="orderNumberInput" ng-model="_order.orderNumber" required>
       </div>
       <div class="form-group col-md-3">
-        <button type="submit" class="btn btn-default" ng-click="setSupplier()" id="btnConfirmSupplier">Confirmar</button>
+        <button type="submit" class="btn btn-default" id="btnConfirmSupplier">Confirmar</button>
         <button type="reset" class="btn btn-default" ng-click="cancelSupplier()" id="btnCancelSupplier" disabled>Canelar</button>
       </div>
     </fieldset>
   </form>
 
   <hr>
-  <form role="form" class="form-inline">
+  <form role="form" class="form-inline" ng-submit="addProduct()"  ng-show="showProducts">
     <fieldset class="row">
       <div class="form-group " ng-hide="true">
         <input type="text" class="form-control" id="productIdInput" ng-model="_product.id">
       </div>
       <div class="form-group col-md-2">
         <label for="productCodInput">Código:</label>
-        <input type="text" class="form-control" id="productCodInput" ng-model="_product.cod" style="width: 100%" required="">
+        <input type="text" class="form-control" id="productCodInput" ng-model="_product.cod" style="width: 100%" required="" ng-keydown="searchProductByCode($event)" >
       </div>
       <div class="form-group col-md-10">
         <label for="productNameInput">Nome:</label><label style="float: right"><a data-toggle="modal" data-target="#myModal">?</a></label>
@@ -37,7 +37,7 @@
     <br>
     <fieldset class="row">
       <div class="form-group" ng-hide="true">        
-        <input type="text" class="form-control" id="qtdInStockInput" ng-model="_product.QtdInStock">
+        <input type="text" class="form-control" id="qtdInStockInput" ng-model="_product.QtdInStock" disabled>
       </div>
       <div class="form-group col-md-3">
         <label for="quantityInput">Quantidade:</label>
@@ -53,12 +53,12 @@
       </div>
       <div class="form-group col-md-3">
         <label for="productTotalSale">Total Compra:</label>
-        <input type="text" class="form-control" id="productTotalSale" ng-model="_product.total">
+        <input type="text" class="form-control" id="productTotalSale" ng-model="total" disabled>
       </div>
     </fieldset>
     <br>
-    <button type="submit" class="btn btn-default" ng-click="addProduct()" id="btnConfirmProduct">Adcionar</button>
-    <button type="reset" class="btn btn-default" ng-click="cancelProduct()" id="btnCancelProduct" disabled>Canelar</button>
+    <button type="submit" class="btn btn-default" id="btnAddProduct">Adcionar</button>
+    <button type="reset" class="btn btn-default" ng-click="cancelProduct()" id="btnCancelProduct">Canelar</button>
   </form>
 </div>
 </div>

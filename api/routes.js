@@ -6,6 +6,17 @@ module.exports = function (app) {
 	//res.sendStatus(403); // equivalent to res.status(403).send('Forbidden')
 	//res.sendStatus(404); // equivalent to res.status(404).send('Not Found')
 	//res.sendStatus(500); // equivalent to res.status(500).send('Internal Server Error')	
+	app.post('/api/addProduct', function(req, res){
+		var param = req.body;
+		try {
+			mongo.inserItem(param, "products", function () {
+				res.sendStatus(200);
+			});
+		} catch (error) {
+			res.status(500).send(error);
+		}
+	});	
+	
 	app.post('/api/addSupplier', function (req, res) {
 		var param = req.body;
 		try {
@@ -29,6 +40,15 @@ module.exports = function (app) {
 	app.get('/api/getSuppliersList', function (req, res) {
 		try {
 			mongo.getItensFromCollection("suppliers", function (docs) {				
+				res.json(docs);
+			});
+		} catch (error) {
+			res.status(500).send(error);
+		}
+	});
+	app.get('/api/getProductsList', function(req, res){
+		try {
+			mongo.getItensFromCollection("products", function (docs) {				
 				res.json(docs);
 			});
 		} catch (error) {
