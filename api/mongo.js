@@ -1,11 +1,24 @@
 ﻿var mongod = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
+var log4js = require('log4js');
+
+log4js.loadAppender('file');
+log4js.addAppender(log4js.appenders.file('./logs/mongo.log'), 'mongo');
+var logger = log4js.getLogger('mongo');
+logger.setLevel('ALL');
+
 
 var assert = require('assert');
 var url = 'mongodb://127.0.0.1:27017/Ilumicar';
 var db = undefined;
 var connect = function (callback) {
 	mongod.connect(url, function (err, db) {
+		if(err){
+			logger.error(err);
+			console.error(err);
+			return;
+		}
+		
 		assert.equal(null, err);		
 		callback(db);		
 	});

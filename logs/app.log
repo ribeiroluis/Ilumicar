@@ -1,0 +1,63 @@
+[2015-10-02 20:10:51.385] [INFO] app - start server
+[2015-10-02 20:13:32.070] [ERROR] app - Something went wrong: [TypeError: object is not a function]
+TypeError: object is not a function
+    at c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\app.js:57:5
+    at Layer.handle [as handle_request] (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:312:13)
+    at c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:330:12)
+    at next (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:271:10)
+    at c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:618:15
+    at next (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:256:14)
+    at Function.handle (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:176:3)
+    at router (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:46:12)
+[2015-10-02 20:13:32.076] [ERROR] app - Something went wrong: { [Error: Failed to lookup view "error" in views directory "c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\views"]
+  view: 
+   { defaultEngine: 'html',
+     ext: '.html',
+     name: 'error',
+     root: 'c:\\Users\\Luis Ribeiro\\OneDrive\\Projetos\\Js\\Ilumicar\\views',
+     engine: [Function],
+     path: undefined } }
+Error: Failed to lookup view "error" in views directory "c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\views"
+    at EventEmitter.render (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\application.js:579:17)
+    at ServerResponse.render (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\response.js:961:7)
+    at c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\app.js:67:13
+    at Layer.handle_error (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\layer.js:71:5)
+    at trim_prefix (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:310:13)
+    at c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:330:12)
+    at next (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:271:10)
+    at Layer.handle [as handle_request] (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\layer.js:97:5)
+    at trim_prefix (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:312:13)
+[2015-10-02 20:14:11.842] [ERROR] app - Something went wrong: [TypeError: object is not a function]
+TypeError: object is not a function
+    at c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\app.js:57:5
+    at Layer.handle [as handle_request] (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:312:13)
+    at c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:330:12)
+    at next (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:271:10)
+    at c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:618:15
+    at next (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:256:14)
+    at Function.handle (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:176:3)
+    at router (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:46:12)
+[2015-10-02 20:14:11.845] [ERROR] app - Something went wrong: { [Error: Failed to lookup view "error" in views directory "c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\views"]
+  view: 
+   { defaultEngine: 'html',
+     ext: '.html',
+     name: 'error',
+     root: 'c:\\Users\\Luis Ribeiro\\OneDrive\\Projetos\\Js\\Ilumicar\\views',
+     engine: [Function],
+     path: undefined } }
+Error: Failed to lookup view "error" in views directory "c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\views"
+    at EventEmitter.render (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\application.js:579:17)
+    at ServerResponse.render (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\response.js:961:7)
+    at c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\app.js:67:13
+    at Layer.handle_error (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\layer.js:71:5)
+    at trim_prefix (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:310:13)
+    at c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:330:12)
+    at next (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:271:10)
+    at Layer.handle [as handle_request] (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\layer.js:97:5)
+    at trim_prefix (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:312:13)

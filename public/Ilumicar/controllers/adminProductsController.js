@@ -95,8 +95,11 @@
             ]
         });
         $('#genericTable tbody').on('click', 'tr', function () {
-            console.info(modalProductsTable.row(this).data());
-            $('#myModal').modal('hide');          
+            var _product = modalProductsTable.row(this).data(); 
+            $scope._product = _product;
+            $('#myModal').modal('hide');
+            $scope.$apply();
+            console.info(_product);          
             //$scope.supplier = supplierTable.row(this).data();
             //$scope.$apply();
         });

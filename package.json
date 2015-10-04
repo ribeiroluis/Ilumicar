@@ -4,17 +4,19 @@
   "description": "SPA",
   "main": "app.js",
   "dependencies": {
-    "express": "^4.13.3",
-    "mongoose": "~3.6.2",
-    "mongodb": "~2.0",
+    "express": "*",
+    "mongoose": "*",
+    "mongodb": "*",
     "mongojs": "*",
-    "morgan": "~1.2.2",
-    "body-parser": "~1.5.2",
-    "static-favicon": "~1.0.0",
+    "morgan": "*",
+    "body-parser": "*",
+    "static-favicon": "*",
     "open": "*",
-    "ejs": "1.0.0",
+    "ejs": "*",
     "path": "*",
-    "debug": "~0.7.4"
+    "debug": "*",
+    "log4js": "*",
+    "mkdirp": "*"       
   },
   "config": {
     "httpPort": "3000"
