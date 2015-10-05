@@ -19,7 +19,7 @@
     "mkdirp": "*"       
   },
   "config": {
-    "httpPort": "3000"
+    "httpPort": "80"
   },
   "scripts": {
     "start": "node ./app",

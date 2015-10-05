@@ -61,3 +61,4 @@ Error: Failed to lookup view "error" in views directory "c:\Users\Luis Ribeiro\O
     at next (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:271:10)
     at Layer.handle [as handle_request] (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\layer.js:97:5)
     at trim_prefix (c:\Users\Luis Ribeiro\OneDrive\Projetos\Js\Ilumicar\node_modules\express\lib\router\index.js:312:13)
+[2015-10-05 09:58:05.492] [INFO] app - start server

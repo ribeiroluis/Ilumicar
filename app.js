@@ -11,7 +11,7 @@ var log4js = require('log4js');
 var mkdirp = require('mkdirp');
 var app = express();// create our app w/ express
 
-app.set('httpPort', process.env.HTTP_PORT || httpPort || 3000);
+app.set('httpPort', process.env.HTTP_PORT || httpPort || 80);
 //Cria o servidor HTTP e inicia o mesmo
 var httpServer = http.createServer(app);
 httpServer.listen(app.get('httpPort'));
@@ -23,7 +23,7 @@ app.use(favicon());
 
 mkdirp('./logs', function (err) {
     if (err) console.error(err)
-    else console.log('pow!')
+    else console.log('./log directory created.')
 });
 
 
@@ -83,27 +83,3 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 open("http://localhost:" + app.get('httpPort'));
-
-// var exec = require('child_process').exec,
-//     child;
-// child = exec('app.js', function (error, stdout, stderr) {
-//     console.log('stdout: ' + stdout);
-//     console.log('stderr: ' + stderr);
-//     if (error !== null) {
-//       console.log('exec error: ' + error);
-//     }
-// });
-// var express = require('express');
-// var app = express(); 					      // create our app w/ express
-// var port = process.env.PORT || 3000; 	      // set the port
-// var bodyParser = require('body-parser'); 	  // pull information from HTML POST (express4)
-// var open = require("open");
-// require('./api/routes.js')(app);
-// // set the static files location /public/img will be /img for users
-// app.use(express.static(__dirname + '/public'));
-// app.use(bodyParser.urlencoded({ 'extended': 'true' })); 		// parse application/x-www-form-urlencoded
-// app.use(bodyParser.json()); 									// parse application/json
-// app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
-// app.listen(port);
-// console.log("App listening on http://localhost:" + port);
-// open("http://localhost:3000/");
